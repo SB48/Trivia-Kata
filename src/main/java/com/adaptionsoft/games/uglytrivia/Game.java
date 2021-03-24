@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Game {
     ArrayList players = new ArrayList();
-    int[] places = new int[6]; //order of who is winning?
+    int[] places = new int[6];
     int[] purses  = new int[6]; //amount of gold coins - 6 means a win
     boolean[] inPenaltyBox  = new boolean[6];
     
@@ -56,11 +56,13 @@ public class Game {
 		System.out.println("They have rolled a " + roll);
 		
 		if (inPenaltyBox[currentPlayer]) {
-			if (roll % 2 != 0) {
+			if (roll % 2 != 0) { //if odd number then leave penalty box
 				isGettingOutOfPenaltyBox = true;
 				
 				System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
-				places[currentPlayer] = places[currentPlayer] + roll;
+				places[currentPlayer] = places[currentPlayer] + roll; // move to new location
+
+				//Circular board? - loops to beginning
 				if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 				
 				System.out.println(players.get(currentPlayer) 
